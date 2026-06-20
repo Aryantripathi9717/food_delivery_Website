@@ -14,32 +14,32 @@ const Categories = [
     },
     {
         id:2,
-        name : "BreakFast",
+        name : "breakfast",
         image : <MdOutlineFreeBreakfast className="text-green-600 h-[35px] w-[30px] ml-2"/>
     },
     {
         id:3,
-        name : "Soup",
+        name : "soups",
         image : <MdSoupKitchen className="text-green-600 h-[35px] w-[30px] ml-2"/>
     },
     {
         id:4,
-        name : "Noodles",
+        name : "pasta",
         image : <TiThSmallOutline className="text-green-600 h-[35px] w-[30px] ml-2"/>
     },
     {
         id:5,
-        name : "Main_Course",
+        name : "main_course",
         image : <MdOutlineFoodBank className="text-green-600 h-[35px] w-[30px] ml-2" />
     },
     {
         id:6,
-        name : "Pizza",
+        name : "pizza",
         image : <GiFullPizza className="text-green-600 h-[35px] w-[30px] ml-2" />
     },
     {
         id:7,
-        name : "Burger",
+        name : "burger",
         image : <GiHamburger className="text-green-600 h-[35px] w-[30px] ml-2" />
     }
    

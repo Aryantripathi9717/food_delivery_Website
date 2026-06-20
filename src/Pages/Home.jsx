@@ -1,15 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import Nav from "../Components/Nav";
 import Categories from "../Categories";
 import Card from "../Components/Card";
 import { food_items } from "../Food";
 const Home = () => {
+  let [cate,setCate] = useState(food_items);
+
+  function filter(category){
+    console.log(category);
+    if(category==="All") setCate(food_items);
+    else {
+      let newList = food_items.filter((item) => (item.food_category === category))
+      setCate(newList);
+    }
+  }
+
   return (
     <div className="bg-slate-200 w-full min-h-screen">
       <Nav />
       <div className="flex flex-wrap justify-center items-center gap-6">
         {Categories.map((item) => (
-          <div className="text-gray-700 bg-white w-[60px] h-[65px] text-[9px] flex flex-col items-start gap-2 p-1 justify-start font-semibold rounded-sm shadow-lg hover:bg-green-300 cursor-pointer transition-all duration-300">
+          <div className="text-gray-700 bg-white w-[60px] h-[65px] text-[9px] flex flex-col items-start gap-2 p-1 justify-start font-semibold rounded-sm shadow-lg hover:bg-green-300 cursor-pointer transition-all duration-300" onClick={()=>filter(item.name)}>
             {item.image}
             {item.name}
           </div>
@@ -17,7 +28,7 @@ const Home = () => {
       </div>
 
       <div className="w-full flex flex-wrap gap-2 justify-center pt-8 pb-8 p-8 items-center">
-        {food_items.map((item) => (
+        {cate.map((item) => (
           <Card
             name={item.food_name}
             price={item.price}
