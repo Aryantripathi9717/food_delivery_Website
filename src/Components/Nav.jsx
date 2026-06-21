@@ -1,9 +1,11 @@
-import React from "react";
+import {React,useState }from "react";
 import { IoFastFood } from "react-icons/io5";
 import { IoSearch } from "react-icons/io5";
 import { LuShoppingBag } from "react-icons/lu";
-
+import { food_items } from "../Food";
+import { dataContext } from "../context/UserContext";
 const Nav = () => {
+    let {input,setInput} = useState(dataContext);
   return (
     <div className="w-full h-[100px] flex justify-between items-center px-2 md:px-6">
       <div className=" w-[30px] h-[22px] md:h-[30px] flex bg-white flex justify-center items-center rounded-sm shadow-lg hover:bg-green-300 cursor-pointer transition-all duration-300">
@@ -18,6 +20,7 @@ const Nav = () => {
           type="text"
           placeholder="Search Items....."
           className="w-[100%] outline-none text-[8px] md:text-[12px]"
+
         />
       </form>
       <div className=" w-[30px] h-[22px] md:h-[30px]  flex bg-white flex justify-center items-center rounded-sm shadow-lg relative hover:bg-green-300 cursor-pointer transition-all duration-300">

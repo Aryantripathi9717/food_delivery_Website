@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Nav from "../Components/Nav";
 import Categories from "../Categories";
 import Card from "../Components/Card";
 import { food_items } from "../Food";
+import { dataContext } from "../context/UserContext";
 const Home = () => {
-  let [cate,setCate] = useState(food_items);
+
+  let {cate,setCate} = useContext(dataContext);
 
   function filter(category){
     console.log(category);
@@ -20,7 +22,7 @@ const Home = () => {
       <Nav />
       <div className="flex flex-wrap justify-center items-center gap-6">
         {Categories.map((item) => (
-          <div className="text-gray-700 bg-white w-[60px] h-[65px] text-[9px] flex flex-col items-start gap-2 p-1 justify-start font-semibold rounded-sm shadow-lg hover:bg-green-300 cursor-pointer transition-all duration-300" onClick={()=>filter(item.name)}>
+          <div key={item.name} className="text-gray-700 bg-white w-[60px] h-[65px] text-[9px] flex flex-col items-start gap-2 p-1 justify-start font-semibold rounded-sm shadow-lg hover:bg-green-300 cursor-pointer transition-all duration-300" onClick={()=>filter(item.name)}>
             {item.image}
             {item.name}
           </div>
@@ -29,7 +31,8 @@ const Home = () => {
 
       <div className="w-full flex flex-wrap gap-2 justify-center pt-8 pb-8 p-8 items-center">
         {cate.map((item) => (
-          <Card
+          <Card 
+            key={item.id}
             name={item.food_name}
             price={item.price}
             id={item.id}
