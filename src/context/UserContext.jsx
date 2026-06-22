@@ -4,7 +4,7 @@ export const dataContext = createContext();
 
 function UserContext({children})  {
 
-    let [input,setInput] = useState(null);
+    let [input,setInput] = useState('');
     let [cate,setCate] = useState(food_items);
     let data = {
         input,setInput,cate,setCate

@@ -1,11 +1,18 @@
-import {React,useState }from "react";
+import {React,useContext,useEffect,useState }from "react";
 import { IoFastFood } from "react-icons/io5";
 import { IoSearch } from "react-icons/io5";
 import { LuShoppingBag } from "react-icons/lu";
 import { food_items } from "../Food";
 import { dataContext } from "../context/UserContext";
 const Nav = () => {
-    let {input,setInput} = useState(dataContext);
+    let {input,setInput,cate,setCate} = useContext(dataContext);
+    useEffect(()=>{
+      let newList = food_items.filter((item)=>(
+        item.food_name.toLowerCase().includes(input.toLowerCase())
+      ))
+      setCate(newList);
+    },[input]);
+
   return (
     <div className="w-full h-[100px] flex justify-between items-center px-2 md:px-6">
       <div className=" w-[30px] h-[22px] md:h-[30px] flex bg-white flex justify-center items-center rounded-sm shadow-lg hover:bg-green-300 cursor-pointer transition-all duration-300">
@@ -14,13 +21,15 @@ const Nav = () => {
       <form
         action=""
         className="bg-white flex px-2 items-center w-[65%] md:w-[80%] h-[22px] md:h-[30px] shadow-lg rounded-sm cursor-pointer"
+        onSubmit={(e)=>e.preventDefault()}
       >
         <IoSearch className="m-2 h-3 text-green-600" />
         <input
           type="text"
           placeholder="Search Items....."
           className="w-[100%] outline-none text-[8px] md:text-[12px]"
-
+          value = {input}
+          onChange={(e)=>setInput(e.target.value)}
         />
       </form>
       <div className=" w-[30px] h-[22px] md:h-[30px]  flex bg-white flex justify-center items-center rounded-sm shadow-lg relative hover:bg-green-300 cursor-pointer transition-all duration-300">

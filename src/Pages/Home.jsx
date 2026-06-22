@@ -6,7 +6,7 @@ import { food_items } from "../Food";
 import { dataContext } from "../context/UserContext";
 const Home = () => {
 
-  let {cate,setCate} = useContext(dataContext);
+  let {cate,setCate,input} = useContext(dataContext);
 
   function filter(category){
     console.log(category);
@@ -20,14 +20,14 @@ const Home = () => {
   return (
     <div className="bg-slate-200 w-full min-h-screen">
       <Nav />
-      <div className="flex flex-wrap justify-center items-center gap-6">
+   {!input ?    <div className="flex flex-wrap justify-center items-center gap-6">
         {Categories.map((item) => (
           <div key={item.name} className="text-gray-700 bg-white w-[60px] h-[65px] text-[9px] flex flex-col items-start gap-2 p-1 justify-start font-semibold rounded-sm shadow-lg hover:bg-green-300 cursor-pointer transition-all duration-300" onClick={()=>filter(item.name)}>
             {item.image}
             {item.name}
           </div>
         ))}
-      </div>
+      </div> : null}
 
       <div className="w-full flex flex-wrap gap-2 justify-center pt-8 pb-8 p-8 items-center">
         {cate.map((item) => (
@@ -40,6 +40,9 @@ const Home = () => {
             image={item.food_image}
           />
         ))}
+      </div>
+      <div className="w-[43vw] shadow-2xl bg-white h-[100%] top-0 right-0 fixed">
+
       </div>
     </div>
   );
