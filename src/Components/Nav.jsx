@@ -5,7 +5,7 @@ import { LuShoppingBag } from "react-icons/lu";
 import { food_items } from "../Food";
 import { dataContext } from "../context/UserContext";
 const Nav = () => {
-    let {input,setInput,cate,setCate} = useContext(dataContext);
+    let {input,setInput,cate,setCate,showCart,setShowCart} = useContext(dataContext);
     useEffect(()=>{
       let newList = food_items.filter((item)=>(
         item.food_name.toLowerCase().includes(input.toLowerCase())
@@ -32,7 +32,7 @@ const Nav = () => {
           onChange={(e)=>setInput(e.target.value)}
         />
       </form>
-      <div className=" w-[30px] h-[22px] md:h-[30px]  flex bg-white flex justify-center items-center rounded-sm shadow-lg relative hover:bg-green-300 cursor-pointer transition-all duration-300">
+      <div onClick={()=>setShowCart(!showCart)} className=" w-[30px] h-[22px] md:h-[30px]  flex bg-white flex justify-center items-center rounded-sm shadow-lg relative hover:bg-green-300 cursor-pointer transition-all duration-300">
         <span className="absolute text-[8px] md:text-[10px] top-[-2px] right-[6px] md:right-[4px] text-green-700 font-semibold">
           0
         </span>
