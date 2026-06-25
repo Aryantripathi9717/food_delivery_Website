@@ -2,8 +2,12 @@ import React from "react";
 import Image1 from "../assets/image1.avif";
 import { LuLeafyGreen } from "react-icons/lu";
 import { GiChickenOven } from "react-icons/gi";
+import { AddItem } from "../redux/cartSlice";
+import { useDispatch } from "react-redux";
 
 const Card = ({ name, price, id, type, image }) => {
+const dispatch = useDispatch();
+
   return (
     <div className="w-[150px] h-[205px] bg-white p-2 rounded-md shadow-lg cursor-pointer hover:bg-green-100 hover:border-2 border-green-400">
       <div className="w-[100%] h-[60%] overflow-hidden rounded-md">
@@ -18,7 +22,9 @@ const Card = ({ name, price, id, type, image }) => {
           <span>{type}</span>
         </div>
       </div>
-      <button className="w-full text-gray-700 text-[12px] font-semibold bg-green-200 h-5 rounded-sm hover:bg-green-400 transition-all">
+      <button className="w-full text-gray-700 text-[12px] font-semibold bg-green-200 h-5 rounded-sm hover:bg-green-400 transition-all"  onClick={() => {
+    dispatch(AddItem({id : id, name : name, price : price, image : image, qty: 1}));
+  }}>
         Add to Cart
       </button>
     </div>
