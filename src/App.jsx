@@ -1,10 +1,12 @@
 import React from 'react'
 import Home from './Pages/Home'
 import './index.css'
+import {ToastContainer} from 'react-toastify'
 const App = () => {
   return (
-    <div className='text-red-500'>
+    <div>
       <Home/>
+      <ToastContainer/>
     </div>
   )
 }

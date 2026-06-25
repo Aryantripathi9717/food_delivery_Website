@@ -7,6 +7,7 @@ import { dataContext } from "../context/UserContext";
 import { RxCross2 } from "react-icons/rx";
 import CardInCart from "../Components/CardInCart";
 import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 const Home = () => {
 
@@ -41,7 +42,7 @@ const Home = () => {
       </div> : null}
 
       <div className="w-full flex flex-wrap gap-2 justify-center pt-8 pb-8 p-8 items-center">
-        {cate.map((item) => (
+        {cate.length!==0 ? cate.map((item) => (
           <Card 
             key={item.id}
             name={item.food_name}
@@ -50,14 +51,15 @@ const Home = () => {
             type={item.food_type}
             image={item.food_image}
           />
-        ))}
+        )) : <div className="font-semibold text-red-400 text-xl" >No Dish Found...</div>}
       </div>
       { <div className={`w-full md:w-[43vw] shadow-2xl bg-white h-[100%] top-0 right-0 fixed p-3 transition-all duration-300 overflow-auto ${showCart ? 'translate-x-0' : 'translate-x-full'}  text-green-400`}>
         <header className="flex justify-between items-center">
           <span className="font-semibold">Order Items</span>
           <span onClick={()=>setShowCart(!showCart)} className="cursor-pointer hover:text-gray-800"><RxCross2 /></span>
         </header>
-      <div className="w-full flex flex-col gap-3">
+      {items.length === 0 ? <div className="flex justify-center font-semibold text-lg pt-10">Cart is Empty...</div> : <div>
+        <div className="w-full flex flex-col gap-3">
         {items.map((item)=>(
           <CardInCart id = {item.id} name = {item.name} price = {item.price} image = {item.image} qty = {item.qty}/>
         ))}
@@ -83,8 +85,9 @@ const Home = () => {
         </div>
 
         <div className="flex items-center justify-center">
-          <button  className="w-[74%] text-gray-700 text-[11px] font-semibold  bg-green-500 h-6 rounded-md hover:bg-green-400 transition-all">Place Order</button>
+          <button  className="w-[74%] text-gray-700 text-[11px] font-semibold  bg-green-500 h-6 rounded-md hover:bg-green-400 transition-all" onClick={()=>{toast.success("Order placed..")}}>Place Order</button>
         </div>
+      </div>}
       </div>}
     </div>
   );
